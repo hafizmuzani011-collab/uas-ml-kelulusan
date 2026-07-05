@@ -1,0 +1,116 @@
+[
+  {
+    "Model": "KNN (Baseline)",
+    "Accuracy": 0.8787878787878788,
+    "Precision (Macro)": 0.8835619918699187,
+    "Recall (Macro)": 0.8608039640558282,
+    "F1-Score (Macro)": 0.869258789342283,
+    "Balanced Accuracy": 0.8608039640558282,
+    "Confusion Matrix": [
+      [
+        221,
+        63
+      ],
+      [
+        25,
+        417
+      ]
+    ],
+    "Train Time (s)": 0.0065
+  },
+  {
+    "Model": "Naive Bayes (Baseline)",
+    "Accuracy": 0.8443526170798898,
+    "Precision (Macro)": 0.8531556505080646,
+    "Recall (Macro)": 0.81867790453126,
+    "F1-Score (Macro)": 0.8293899773526519,
+    "Balanced Accuracy": 0.81867790453126,
+    "Confusion Matrix": [
+      [
+        199,
+        85
+      ],
+      [
+        28,
+        414
+      ]
+    ],
+    "Train Time (s)": 0.001
+  },
+  {
+    "Model": "SVM (Baseline)",
+    "Accuracy": 0.8939393939393939,
+    "Precision (Macro)": 0.8945124212087505,
+    "Recall (Macro)": 0.8814288445605761,
+    "F1-Score (Macro)": 0.8869101686171773,
+    "Balanced Accuracy": 0.8814288445605761,
+    "Confusion Matrix": [
+      [
+        234,
+        50
+      ],
+      [
+        27,
+        415
+      ]
+    ],
+    "Train Time (s)": 0.4821
+  },
+  {
+    "Model": "KNN (Optimized)",
+    "Accuracy": 0.8842975206611571,
+    "Precision (Macro)": 0.8857380319148936,
+    "Recall (Macro)": 0.869734242559429,
+    "F1-Score (Macro)": 0.8761695906432749,
+    "Balanced Accuracy": 0.869734242559429,
+    "Confusion Matrix": [
+      [
+        228,
+        56
+      ],
+      [
+        28,
+        414
+      ]
+    ],
+    "Train Time (s)": 0.0
+  },
+  {
+    "Model": "Naive Bayes (Optimized)",
+    "Accuracy": 0.8526170798898072,
+    "Precision (Macro)": 0.8660678285023072,
+    "Recall (Macro)": 0.825465234848002,
+    "F1-Score (Macro)": 0.837565213754744,
+    "Balanced Accuracy": 0.825465234848002,
+    "Confusion Matrix": [
+      [
+        199,
+        85
+      ],
+      [
+        22,
+        420
+      ]
+    ],
+    "Train Time (s)": 0.0
+  },
+  {
+    "Model": "SVM (Optimized)",
+    "Accuracy": 0.8911845730027548,
+    "Precision (Macro)": 0.8908712398065188,
+    "Recall (Macro)": 0.8791664011216621,
+    "F1-Score (Macro)": 0.8841415253466927,
+    "Balanced Accuracy": 0.8791664011216621,
+    "Confusion Matrix": [
+      [
+        234,
+        50
+      ],
+      [
+        29,
+        413
+      ]
+    ],
+    "Train Time (s)": 0.0
+  }
+]

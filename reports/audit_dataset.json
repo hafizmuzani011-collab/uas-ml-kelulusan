@@ -1,0 +1,12 @@
+{
+  "total_rows": 3630,
+  "total_columns": 37,
+  "missing_values": 0,
+  "duplicate_rows": 0,
+  "target_distribution": {
+    "1": 2209,
+    "0": 1421
+  },
+  "imbalance_ratio": 1.55,
+  "outlier_columns_count": 27
+}
