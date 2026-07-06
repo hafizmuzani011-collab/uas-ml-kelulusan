@@ -1,140 +1,108 @@
-# SKRIP VIDEO PRESENTASI UAS MACHINE LEARNING
-# Durasi: ±10 menit (1 menit per slide)
-# Pembicara: Na'ilah Azfa Zarqarida (A11.2024.15549) / Hafizh Muzani
+# SKRIP VIDEO PRESENTASI UAS MACHINE LEARNING (BAHASA AKADEMIS FORMAL)
+# Pembicara: Na'ilah Azfa Zarqarida / Kelompok A11.2024.15549
 
 ---
 
-## SLIDE 1 — JUDUL (±45 detik)
+## SLIDE 1 — PENDAHULUAN (Durasi: ±45 Detik)
 
-"Assalamualaikum Warahmatullahi Wabarakatuh. 
+"Selamat pagi / siang Bapak/Ibu Dosen Penguji. 
 
-Perkenalkan, nama saya Na'ilah Azfa Zarqarida, NIM A11.2024.15549, dari kelompok A11.4401 dan A11.4410. 
+Perkenalkan, nama saya Na'ilah Azfa Zarqarida, NIM A11.2024.15549, mewakili kelompok A11.4401 dan A11.4410.
 
-Pada kesempatan ini, saya akan mempresentasikan UAS mata kuliah Pembelajaran Mesin dengan judul: Prediksi Kelulusan Mahasiswa Menggunakan Machine Learning — studi kasus dataset UCI Student Dropout and Academic Success."
-
----
-
-## SLIDE 2 — LATAR BELAKANG & MASALAH (±1 menit)
-
-"Latar belakang penelitian ini adalah tingginya angka dropout mahasiswa di perguruan tinggi Portugal yang tercatat dalam dataset UCI. Dari 4.424 mahasiswa, sekitar 39% mengalami dropout.
-
-Masalah ini sangat krusial karena dropout berdampak pada Indikator Kinerja Utama institusi, pemborosan sumber daya, dan masa depan mahasiswa itu sendiri.
-
-Tujuan project ini adalah membangun sistem prediksi dini yang bisa membantu institusi mengidentifikasi mahasiswa berisiko dropout SEBELUM terlambat, sehingga intervensi bisa dilakukan lebih awal.
-
-Sesuai prinsip OBE atau Outcome-Based Education, tujuan pembelajaran yang dicapai adalah CPL-8 yaitu keterampilan analitik machine learning, dan CPL-10 yaitu tanggung jawab etis dalam penggunaan teknologi."
+Pada kesempatan kali ini, saya akan mempresentasikan laporan proyek akhir mata kuliah Pembelajaran Mesin yang berjudul: 'Prediksi Kelulusan Mahasiswa Menggunakan Pendekatan Machine Learning dan Implementasi Outcome-Based Education (OBE)'."
 
 ---
 
-## SLIDE 3 — DATASET & PREPROCESSING (±1 menit 15 detik)
+## SLIDE 2 — LATAR BELAKANG & URGENSI MASALAH (Durasi: ±1 Menit 15 Detik)
 
-"Dataset yang digunakan berasal dari UCI Machine Learning Repository, dengan judul Predict Students Dropout and Academic Success. Link-nya ada di laporan dan di repository GitHub kami.
+"Latar belakang utama dari penelitian ini adalah tingginya tingkat dropout atau putus kuliah di lingkungan akademis, di mana data empiris menunjukkan persentase yang signifikan, yakni sebesar 39 persen dari total 4.424 mahasiswa pada basis data UCI. Masalah ini tidak hanya merugikan masa depan mahasiswa, tetapi juga berdampak buruk bagi reputasi institusi karena menurunkan skor Indikator Kinerja Utama universitas dan memicu inefisiensi alokasi anggaran operasional.
 
-Dataset awalnya berisi 4.424 baris dan 37 kolom fitur. Kami melakukan filtering: menghapus mahasiswa dengan status Enrolled, sehingga menyisakan 3.630 data untuk klasifikasi biner: Graduate atau Dropout.
+Oleh karena itu, kami merancang sebuah sistem deteksi dini atau Early Warning System yang memanfaatkan model klasifikasi Machine Learning untuk memetakan probabilitas mahasiswa yang terancam dropout sebelum masa studi mereka selesai.
 
-Preprocessing yang dilakukan meliputi: pertama, seleksi 10 fitur terbaik berdasarkan domain knowledge dan skor Mutual Information. Kedua, train-test split 80-20 stratified. Ketiga, StandardScaler untuk normalisasi — penting agar KNN dan SVM tidak bias ke fitur bernilai besar. Dan keempat, SMOTE untuk menyeimbangkan data latih agar distribusi kelas 1 dan 0 menjadi 50:50.
-
-Yang penting, SMOTE dipasang HANYA pada data latih, bukan data test, untuk mencegah data leakage."
+Proyek ini juga diselaraskan dengan standar Outcome-Based Education atau OBE, khususnya dalam memenuhi Capaian Pembelajaran Lulusan CPL-8 mengenai kecakapan analitik pemodelan machine learning, dan CPL-10 terkait tanggung jawab etis pemanfaatan teknologi."
 
 ---
 
-## SLIDE 4 — DESAIN EKSPERIMEN (±1 menit)
+## SLIDE 3 — DATASET & PIPELINE PREPROCESSING (Durasi: ±1 Menit 30 Detik)
 
-"Desain eksperimen kami menggunakan 3 model baseline: KNN dengan K=5, Naive Bayes Gaussian, dan SVM dengan kernel RBF dan class_weight balanced.
+"Dataset yang digunakan adalah basis data kelulusan mahasiswa dari UCI Machine Learning Repository. Pada tahap awal pra-pemrosesan, data mahasiswa berstatus 'Enrolled' kami saring keluar untuk mereduksi target kelas menjadi klasifikasi biner, menyisakan 3.630 baris data valid untuk status Graduate dan Dropout.
 
-Untuk optimasi, kami menerapkan 4 strategi: pertama, Hyperparameter Tuning menggunakan GridSearchCV. Kedua, Cross-Validation Stratified K-Fold dengan K=5. Ketiga, Feature Selection menggunakan Mutual Information. Dan keempat, Class Imbalance Handling menggunakan SMOTE.
-
-Scoring utama yang digunakan adalah F1-Macro, bukan accuracy, karena F1-Macro lebih adil untuk mengevaluasi performa di kedua kelas, terutama saat data tidak seimbang."
-
----
-
-## SLIDE 5 — HASIL EKSPERIMEN (±1 menit 30 detik)
-
-"Berikut hasil perbandingan 6 model: baseline dan optimized.
-
-Untuk KNN, F1-Macro naik dari 0.869 menjadi 0.876 setelah optimasi — peningkatan kecil.
-
-Untuk Naive Bayes, F1-Macro naik dari 0.829 menjadi 0.838 — peningkatan juga kecil.
-
-Untuk SVM Baseline, F1-Macro adalah 0.887 dengan akurasi 89.4%. Ini adalah skor TERTINGGI dari semua model.
-
-SVM Optimized sedikit turun ke 0.884, artinya SVM baseline sudah sangat optimal tanpa perlu tuning berlebihan.
-
-Model terbaik: SVM Baseline dengan F1-Macro 0.887 dan Balanced Accuracy 88.1%.
-
-Kenapa SVM menang? Karena kernel RBF mampu menangkap pola non-linear antar fitur mahasiswa, dan parameter class_weight='balanced' sudah menangani ketidakseimbangan kelas secara built-in."
+Kami menerapkan empat alur preprocessing utama:
+Pertama, seleksi fitur menggunakan metode kuantitatif Mutual Information untuk menyaring 10 fitur akademis dan demografis paling prediktif, seperti indeks prestasi semester awal dan status pembiayaan kuliah.
+Kedua, pemisahan data latih dan data uji dengan rasio 80 berbanding 20 secara stratified untuk memelihara proporsi kelas asli.
+Ketiga, standarisasi fitur numerik menggunakan StandardScaler untuk menghilangkan bias skala pada algoritma berbasis jarak seperti KNN dan SVM.
+Dan keempat, penanganan imbalance data menggunakan SMOTE pada data training secara terisolasi guna menghindari kebocoran data atau data leakage pada proses evaluasi."
 
 ---
 
-## SLIDE 6 — ERROR ANALYSIS (±1 menit)
+## SLIDE 4 — DESAIN EKSPERIMEN & STRATEGI OPTIMASI (Durasi: ±1 Menit 15 Detik)
 
-"Kami juga melakukan error analysis untuk memahami kelemahan model.
+"Dalam desain eksperimen, kami membandingkan kinerja tiga model klasifikasi dasar, yaitu K-Nearest Neighbors, Naive Bayes Gaussian, dan Support Vector Machine dengan basis kernel RBF.
 
-Dari confusion matrix, model menghasilkan 50 False Positive — yaitu mahasiswa dropout yang salah diprediksi sebagai lulus. Dan 27 False Negative — mahasiswa lulus yang salah diprediksi sebagai dropout.
+Proses optimasi dilakukan melalui empat instrumen, yaitu: penyetelan hyperparameter menggunakan algoritma GridSearchCV, pengujian validasi silang berupa 5-Fold Stratified Cross Validation, seleksi fitur berbasis signifikansi Mutual Information, serta oversampling kelas minoritas.
 
-Pola kesalahan yang kami temukan: mahasiswa dropout yang punya SKS semester 1-2 cukup tinggi sering lolos prediksi model. Ini karena fitur SKS adalah prediktor kuat, sehingga ketika dropout terjadi karena alasan non-akademik — misalnya masalah ekonomi atau keluarga — model tidak bisa mendeteksinya.
-
-Ini menjadi insight penting: model machine learning hanya bisa menangkap pola dari data yang tersedia, dan tidak bisa memprediksi alasan di luar data."
+Mengingat dataset ini memiliki tingkat ketidakseimbangan kelas, kami memilih metrik evaluasi prioritas F1-Macro dan Balanced Accuracy dibandingkan Akurasi biasa. Hal ini memastikan evaluasi model mencerminkan keandalan yang adil untuk mengenali kelas minoritas mahasiswa yang dropout."
 
 ---
 
-## SLIDE 7 — PEMBAHASAN & TRADE-OFF (±1 menit)
+## SLIDE 5 — HASIL EKSPERIMEN KOMPARATIF (Durasi: ±1 Menit 30 Detik)
 
-"Trade-off utama yang kami identifikasi: antara akurasi, kompleksitas, dan interpretabilitas.
+"Berikut adalah visualisasi grafik performa dan tabel perbandingan dari enam model eksperimen yang telah dieksekusi.
 
-SVM dengan kernel RBF memiliki akurasi tertinggi, tapi kurang interpretable dibanding Naive Bayes yang sangat sederhana.
+Dari data komparasi ini, model terbaik yang terpilih adalah Support Vector Machine Baseline. Model ini menunjukkan metrik tertinggi dengan skor F1-Macro sebesar 0.8869 dan Akurasi umum mencapai 89.39 persen.
 
-KNN ada di tengah — cukup akurat tapi sensitif terhadap K dan distribusi data.
+Penyebab SVM unggul adalah karena penggunaan kernel Radial Basis Function (RBF) yang sangat tangguh dalam memetakan batas keputusan non-linear, ditambah dengan optimasi pembobotan kelas internal (class_weight='balanced') yang efisien. 
 
-Implikasi untuk institusi: model ini bisa dipasang sebagai early warning system. Mahasiswa yang diprediksi berisiko dropout bisa diberikan intervensi lebih awal — misalnya konseling akademik, bimbingan, atau bantuan finansial.
-
-Tapi penting diingat: ini adalah DECISION SUPPORT, bukan keputusan final. Keputusan tetap berada pada pihak institusi dan mempertimbangkan faktor-faktor di luar data."
+Optimasi eksternal sekunder seperti integrasi SMOTE eksternal justru menyebabkan sedikit degradasi performa pada SVM menjadi 0.884, dikarenakan hilangnya sebagian data variansi asli saat reduksi parameter ke 8 fitur."
 
 ---
 
-## SLIDE 8 — DESAIN APLIKASI (±1 menit)
+## SLIDE 6 — ANALISIS KESALAHAN EMPIRIS (Durasi: ±1 Menit 15 Detik)
 
-"Aplikasi kami dibangun dengan 2 interface: Streamlit sebagai UI utama dan FastAPI sebagai backend API.
+"Kami melakukan analisis kesalahan empiris terhadap hasil klasifikasi model SVM Baseline. Dari data test, model menghasilkan 50 kesalahan tipe False Positive atau mahasiswa dropout yang keliru diprediksi sebagai lulus, dan 27 kesalahan tipe False Negative.
 
-Di Streamlit, terdapat 4 halaman: pertama, halaman Prediksi — pengguna memasukkan 10 fitur mahasiswa di sidebar, lalu klik tombol prediksi, dan hasilnya berupa kelas prediksi beserta confidence score.
+Melalui penyelidikan sampel, kami mendapati pola bahwa mahasiswa yang memiliki kinerja akademis sangat memuaskan di semester 1 dan 2, namun mendadak dropout di akhir semester, menjadi penyebab utama terjadinya kesalahan prediksi.
 
-Kedua, halaman Dashboard Data — menampilkan distribusi target dan statistik deskriptif dataset.
-
-Ketiga, halaman Performa Model — menampilkan tabel perbandingan 6 model dan grafik bar chart.
-
-Keempat, halaman Penjelasan Model — menjelaskan cara kerja SVM dalam bahasa Indonesia yang mudah dipahami.
-
-Semua halaman sudah dilengkapi disclaimer etis: bahwa aplikasi ini hanya bersifat decision support."
+Kasus ini membuktikan batasan inheren dari data tabular akademis. Model tidak memiliki visibilitas terhadap anomali non-akademik di dunia nyata, seperti penurunan kondisi finansial keluarga secara mendadak atau krisis kesehatan pribadi, yang menjadi pemicu utama kegagalan studi mereka."
 
 ---
 
-## SLIDE 9 — KESIMPULAN (±45 detik)
+## SLIDE 7 — PEMBAHASAN ANALITIS & IMPLIKASI PRAKTIS (Durasi: ±1 Menit 15 Detik)
 
-"Kesimpulan kami: pertama, SVM Baseline dengan kernel RBF adalah model terbaik dengan F1-Macro 0.887 dan akurasi 89.4%.
+"Dalam pembahasan proyek ini, kami mengidentifikasi trade-off klasik dalam machine learning: antara kompleksitas, akurasi, dan interpretabilitas. SVM RBF menempati posisi akurasi tertinggi namun bersifat black-box. Sementara Naive Bayes menawarkan transparansi penuh namun memiliki sensitivitas deteksi yang rendah pada kelas dropout.
 
-Kedua, 10 fitur terpilih yang berbasis domain knowledge dan Mutual Information sudah cukup efektif untuk prediksi.
+Secara implikasi praktis, model SVM Baseline ini sangat layak diposisikan sebagai Decision Support System atau sistem penunjang keputusan bagi para dosen wali. Deteksi dini ini mempermudah alokasi preventif bantuan bimbingan konseling akademik serta bantuan pengajuan beasiswa finansial bagi mahasiswa yang rentan.
 
-Ketiga, ada keterbatasan: model dilatih pada dataset dari Portugal, sehingga perlu validasi sebelum diterapkan di konteks Indonesia.
-
-Rekomendasi pengembangan ke depan: validasi dengan data lokal, eksplorasi ensemble methods, implementasi SHAP untuk interpretabilitas, dan deployment production dengan Docker."
+Meskipun demikian, ada batasan etis mutlak yang kami tekankan dalam laporan: sistem kecerdasan buatan ini dilarang digunakan untuk melakukan eksekusi drop out mahasiswa secara otomatis. Keputusan administratif tertinggi tetap wajib diputuskan melalui verifikasi manusia."
 
 ---
 
-## SLIDE 10 — PENUTUP (±30 detik)
+## SLIDE 8 — DESAIN APLIKASI ANTARMUKA PENGGUNA (Durasi: ±1 Menit)
 
-"Demikian presentasi UAS saya. Semua kode, dataset, laporan, dan aplikasi sudah tersedia di repository GitHub yang link-nya tercantum di slide dan laporan.
+"Untuk membuktikan fungsionalitas model dalam skenario produksi, kami membangun antarmuka pengguna berbasis Streamlit dan Gradio, yang terhubung dengan backend REST API berbasis FastAPI.
 
-Repository: github.com/hafizmuzani011-collab/uas-ml-kelulusan
+Pada web dashboard Streamlit, kami merancang empat menu utama: panel prediksi dengan luaran hasil klasifikasi beserta confidence score-nya, visualisasi data deskriptif, tab visualisasi performa komparasi metrik model, dan halaman edukasi model SVM dalam bahasa Indonesia yang mudah dipahami.
 
-Terima kasih atas perhatiannya. 
+FastAPI menyediakan backend andal yang mengekspos endpoint inferensi `/predict` berbasis JSON, siap untuk diintegrasikan secara langsung dengan Sistem Informasi Akademik atau SIAKAD di tingkat universitas."
+
+---
+
+## SLIDE 9 — KESIMPULAN & REKOMENDASI (Durasi: ±45 Detik)
+
+"Sebagai kesimpulan:
+Pertama, model SVM Baseline terbukti paling tangguh dengan skor F1-Macro 0.8869.
+Kedua, pemilihan 10 fitur utama memberikan batas keputusan yang efisien tanpa mengorbankan waktu pemrosesan data.
+Ketiga, generalisasi model saat ini terbatas pada demografi mahasiswa Portugal, sehingga memerlukan validasi demografis lokal sebelum diterapkan luas.
+
+Rekomendasi kami untuk pengembangan masa depan mencakup pemanfaatan ensemble stacking, integrasi framework Explainable AI seperti nilai SHAP untuk transparansi model, serta pembungkusan infrastruktur deployment dengan sistem Docker."
+
+---
+
+## SLIDE 10 — PENUTUP (Durasi: ±30 Detik)
+
+"Demikian presentasi laporan proyek akhir UAS Machine Learning saya. Seluruh dokumen laporan, dataset, basis kode, dan aplikasi demonstrasi telah kami dokumentasikan secara terbuka pada repositori GitHub di link yang tertera pada layar.
+
+Link repositori: github.com/hafizmuzani011-collab/uas-ml-kelulusan
+
+Terima kasih atas perhatian Bapak dan Ibu Dosen. Kurang lebihnya mohon maaf.
 Wassalamualaikum Warahmatullahi Wabarakatuh."
-
----
-
-## CATATAN UNTUK PEMBICARA
-
-1. **Durasi total**: ±10 menit
-2. **Tips**: Baca skrip ini sambil TUNJUKKAN slide yang sesuai. Jangan hanya membaca teks — sesekali lihat kamera.
-3. **Tekankan poin penting** dengan nada lebih tegas: "F1-Macro 0.887", "SMOTE hanya di data latih", "decision support, bukan keputusan final".
-4. **Jangan lupa**: tunjukkan live demo Streamlit di akhir presentasi jika diperbolehkan (tambah 1-2 menit).
-5. **Siapkan jawaban** untuk pertanyaan dosen: kenapa SVM, kenapa bukan Random Forest, apa itu SMOTE, apa itu data leakage, kenapa F1 bukan accuracy.
