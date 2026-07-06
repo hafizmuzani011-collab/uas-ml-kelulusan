@@ -1,6 +1,22 @@
+# Python virtual environment
 .venv/
+venv/
+ENV/
+
+# Python cache / metadata
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# IDE files
+.vscode/
+.idea/
+
+# OS metadata
 .DS_Store
-.ipynb_checkpoints/
-*.docx
+Thumbs.db
+
+# Temporary MS Office files (PowerPoint lock files)
+~$*
+~$presentasi_uas_ml.pptx
